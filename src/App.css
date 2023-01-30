@@ -1,0 +1,14 @@
+.cp{
+  margin-top: 25px;
+  font-size: 50px;
+}
+.rt{
+  font-size: 28px;
+  margin-right: 10px;
+}
+.prayer{
+  font-weight: 600;
+}
+*{
+  font-family: 'Roboto';
+}

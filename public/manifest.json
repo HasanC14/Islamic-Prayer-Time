@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Islamic Prayer Time",
+  "description": "Get accurate prayer times for Bangladesh with the Islamic Prayer Time Chrome extension. This extension provides the exact timings for Fajr, Dhuhr, Asr, Maghrib, and Isha prayers. Never miss a prayer again with this easy-to-use extension that automatically updates the times. Stay on top of your religious obligations and stay connected with your faith wherever you are.",
+  "version": "1.0",
+  "action": {
+  "default_popup": "index.html",
+  "default_icon": "logo.jpg"
+  },
+  "icons":{
+      "16":"logo.jpg",
+      "128":"logo.jpg"
+          }
+}
