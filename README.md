@@ -29,7 +29,7 @@ The extension will automatically display the current prayer time and the name of
 
 ## API
 
-The prayer times are fetched from the [Prayer Time API](https://api.example.com/prayer-times).
+The prayer times are fetched from the [Prayer Times API](https://rapidapi.com/meezaan/api/prayer-times/).
 
 ## License
 

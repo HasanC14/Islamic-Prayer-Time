@@ -1,13 +1,14 @@
 .cp{
-  margin-top: 25px;
   font-size: 50px;
 }
 .rt{
+  margin-top: 25px;
   font-size: 28px;
   margin-right: 10px;
 }
 .prayer{
   font-weight: 600;
+  color: rgb(246, 241, 241);
 }
 *{
   font-family: 'Roboto';

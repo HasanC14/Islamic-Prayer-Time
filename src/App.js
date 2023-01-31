@@ -9,39 +9,41 @@ function App() {
   const [prayerTimes, setPrayerTimes] = useState(null);
   const [PrayerName, setPrayerName] = useState(null);
   const [nextPrayer, setNextPrayer] = useState(null);
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "77ea2f6f6cmsh832c60d7c313840p1206d8jsn1e21715fed7b",
-      "X-RapidAPI-Host": "muslimsalat.p.rapidapi.com",
-    },
-  };
-  useEffect(() => {
-    // Fetch the prayer times from the API
-    fetch("https://muslimsalat.p.rapidapi.com/dhaka.json", options)
-      .then((response) => response.json())
-      .then((data) => {
-        setPrayerTimes(data.items);
-        setIsLoading(false);
-      });
-  }, []);
+  const [HijriDate, setHijriDate] = useState(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      // Calculate the remaining time until the next prayer
       const currentTime = moment();
-
-      const nextPrayerTime = getNextPrayerTime(
+      const { nextPrayerTime, prayerName } = getNextPrayerTime(
         currentTime,
-        prayerTimes,
-        setPrayerName,
-        setNextPrayer
+        prayerTimes
       );
       const diff = moment.duration(nextPrayerTime.diff(currentTime));
       setRemainingTime(diff);
+      setPrayerName(prayerName);
+      setNextPrayer(nextPrayerTime);
     }, 1000);
 
     return () => clearInterval(interval);
   }, [prayerTimes]);
+  useEffect(() => {
+    fetch(
+      "https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=8"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const HijriDate = {
+          day: data.data.date.hijri.day,
+          month: data.data.date.hijri.month.en,
+          year: data.data.date.hijri.year,
+          abbreviated: data.data.date.hijri.designation.abbreviated,
+        };
+        setHijriDate(HijriDate);
+        //console.log(data.data.date.hijri.designation.abbreviated);
+        setPrayerTimes(data.data.timings);
+        setIsLoading(false);
+      });
+  }, []);
   return (
     <div>
       {isLoading ? (
@@ -50,8 +52,12 @@ function App() {
         <div>
           {prayerTimes ? (
             <div>
-              <div className="rt">{formatTime(remainingTime, PrayerName)}</div>
               <div className="cp">{nextPrayerTime(nextPrayer)}</div>
+              <div>{`${HijriDate.month} ${HijriDate.day}, ${HijriDate.year} ${HijriDate.abbreviated}`}</div>
+              <div className="rt">
+                <span className="prayer">{`${PrayerName}`}</span>
+                {formatTime(remainingTime)}
+              </div>
               <PrayerList prayerTimes={prayerTimes} />
             </div>
           ) : (
@@ -63,56 +69,49 @@ function App() {
   );
 }
 
-const getNextPrayerTime = (
-  currentTime,
-  prayerTimes,
-  setPrayerName,
-  setNextPrayer
-) => {
-  // Calculate the next prayer time based on the current time and the prayer times from the API
+const getNextPrayerTime = (currentTime, prayerTimes) => {
   if (!prayerTimes) {
     return null;
   }
-
   const prayerMoments = {
-    Fajr: moment(prayerTimes[0]?.fajr, "hh:mm"),
-    Sunrise: moment(prayerTimes[0]?.shurooq, "hh:mm"),
-    Dhuhr: moment(prayerTimes[0]?.dhuhr, "hh:mm"),
-    Asr: moment(prayerTimes[0]?.asr, "hh:mm"),
-    Maghrib: moment(prayerTimes[0]?.maghrib, "hh:mm"),
-    Isha: moment(prayerTimes[0]?.isha, "hh:mm"),
+    Fajr: moment(prayerTimes?.Fajr, "hh:mm"),
+    Sunrise: moment(prayerTimes?.Sunrise, "hh:mm"),
+    Dhuhr: moment(prayerTimes?.Dhuhr, "hh:mm"),
+    Asr: moment(prayerTimes?.Asr, "hh:mm"),
+    Maghrib: moment(prayerTimes?.Maghrib, "hh:mm"),
+    Isha: moment(prayerTimes?.Isha, "hh:mm"),
   };
 
-  // Find the next prayer time that is after the current time
   let nextPrayerTime = null;
+  let prayerName = null;
   for (const prayer of Object.keys(prayerMoments)) {
     if (currentTime.isBefore(prayerMoments[prayer])) {
       nextPrayerTime = prayerMoments[prayer];
-      setNextPrayer(nextPrayerTime);
-      setPrayerName(prayer);
+      prayerName = prayer;
       break;
     }
   }
 
-  // If all prayer times have passed, set the next prayer time to the time for the first prayer of the next day
   if (!nextPrayerTime) {
-    nextPrayerTime = prayerMoments["Fajr"]?.add(1, "days");
+    nextPrayerTime = prayerMoments.Fajr?.add(1, "days");
+    prayerName = "Fajr";
   }
-  return nextPrayerTime;
+
+  return { nextPrayerTime, prayerName };
 };
-const formatTime = (time, PrayerName) => {
-  // Convert the time to a human-readable format
+
+const formatTime = (time) => {
   if (!time) {
     return null;
   }
 
   if (time.asHours() < 1) {
-    return `${PrayerName} in ${time.minutes()} minutes ${time.seconds()} seconds`;
+    return ` in ${time.minutes()} minutes ${time.seconds()} seconds`;
   }
 
-  return `${PrayerName} in ${time.hours()} hours, ${time.minutes()} minutes, ${time.seconds()} seconds`;
+  return ` in ${time.hours()} hours, ${time.minutes()} minutes, ${time.seconds()} seconds`;
 };
 const nextPrayerTime = (nextPrayer) => {
-  return `${nextPrayer?._i}`;
+  return `${nextPrayer?.format("h:mm a")}`;
 };
 export default App;
