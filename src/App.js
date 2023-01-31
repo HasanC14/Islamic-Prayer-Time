@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "./App.css";
 import PrayerList from "./PrayerList/PrayerList";
+import Footer from "./Footer/Footer";
 function App() {
   const [remainingTime, setRemainingTime] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +40,7 @@ function App() {
           abbreviated: data.data.date.hijri.designation.abbreviated,
         };
         setHijriDate(HijriDate);
-        //console.log(data.data.date.hijri.designation.abbreviated);
+        console.log(data.data);
         setPrayerTimes(data.data.timings);
         setIsLoading(false);
       });
@@ -59,6 +60,7 @@ function App() {
                 {formatTime(remainingTime)}
               </div>
               <PrayerList prayerTimes={prayerTimes} />
+              <Footer></Footer>
             </div>
           ) : (
             <div>Loading...</div>
@@ -109,7 +111,7 @@ const formatTime = (time) => {
     return ` in ${time.minutes()} minutes ${time.seconds()} seconds`;
   }
 
-  return ` in ${time.hours()} hours, ${time.minutes()} minutes, ${time.seconds()} seconds`;
+  return ` in ${time.hours()} hours, ${time.minutes()} minutes`;
 };
 const nextPrayerTime = (nextPrayer) => {
   return `${nextPrayer?.format("h:mm a")}`;

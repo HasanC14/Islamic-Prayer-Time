@@ -10,6 +10,13 @@
   font-weight: 600;
   color: rgb(246, 241, 241);
 }
+.footer, a{
+  margin-top: 40px;
+  margin-right: 10px;
+text-decoration: none;
+color: rgb(199, 195, 195);
+font-size: medium;
+}
 *{
   font-family: 'Roboto';
 }
