@@ -4,6 +4,7 @@ import moment from "moment";
 import "./App.css";
 import PrayerList from "./PrayerList/PrayerList";
 import Footer from "./Footer/Footer";
+import { FallingLines, ThreeCircles } from "react-loader-spinner";
 function App() {
   const [remainingTime, setRemainingTime] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ function App() {
           abbreviated: data.data.date.hijri.designation.abbreviated,
         };
         setHijriDate(HijriDate);
-        console.log(data.data);
+        // console.log(data.data);
         setPrayerTimes(data.data.timings);
         setIsLoading(false);
       });
@@ -48,7 +49,22 @@ function App() {
   return (
     <div>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="load">
+          <div>
+            <ThreeCircles
+              height="100"
+              width="100"
+              color="rgb(199, 195, 195)"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel="three-circles-rotating"
+              outerCircleColor=""
+              innerCircleColor=""
+              middleCircleColor=""
+            />
+          </div>
+        </div>
       ) : (
         <div>
           {prayerTimes ? (
@@ -63,7 +79,20 @@ function App() {
               <Footer></Footer>
             </div>
           ) : (
-            <div>Loading...</div>
+            <div>
+              <ThreeCircles
+                height="100"
+                width="100"
+                color="rgb(199, 195, 195)"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor=""
+                middleCircleColor=""
+              />
+            </div>
           )}
         </div>
       )}
@@ -114,6 +143,16 @@ const formatTime = (time) => {
   return ` in ${time.hours()} hours, ${time.minutes()} minutes`;
 };
 const nextPrayerTime = (nextPrayer) => {
-  return `${nextPrayer?.format("h:mm a")}`;
+  if (!nextPrayer)
+    return (
+      <FallingLines
+        color="rgb(199, 195, 195)"
+        width="100"
+        visible={true}
+        ariaLabel="falling-lines-loading"
+      />
+    );
+
+  return `${nextPrayer.format("h:mm a")}`;
 };
 export default App;

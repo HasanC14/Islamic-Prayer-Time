@@ -17,6 +17,11 @@ text-decoration: none;
 color: rgb(199, 195, 195);
 font-size: medium;
 }
+.load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 *{
   font-family: 'Roboto';
 }

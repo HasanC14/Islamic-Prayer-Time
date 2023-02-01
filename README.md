@@ -1,6 +1,6 @@
 # Islamic prayer time(Bangladesh Only) Chrome Extension
 
-This is a Chrome extension that displays the current prayer time and the name of the next prayer.
+Islamic Prayer Time is a convenient and user-friendly Chrome extension that helps Muslims keep track of their daily prayers. With this extension, you can easily access the remaining time until the next prayer and view all prayer times for the current date. Designed with simplicity in mind, Islamic Prayer Time provides an accurate and reliable source of information, ensuring you never miss a prayer again. Download Islamic Prayer Time today and stay on top of your daily prayers with ease.
 
 ## Features
 
@@ -10,7 +10,7 @@ This is a Chrome extension that displays the current prayer time and the name of
 
 ## Installation
 
-1. Download the extension from the [releases page](https://github.com/<your-username>/prayer-time-chrome-extension/releases).
+1. Download the extension from the extension file.
 2. Unzip the file.
 3. In Chrome, open the extensions page (chrome://extensions).
 4. Enable developer mode by clicking the toggle switch in the top right corner.
@@ -29,7 +29,7 @@ The extension will automatically display the current prayer time and the name of
 
 ## API
 
-The prayer times are fetched from the [Prayer Times API](https://rapidapi.com/meezaan/api/prayer-times/).
+The prayer times are fetched from the [Prayer Times API by Aladhan.com](https://aladhan.com/prayer-times-api).
 
 ## License
 
