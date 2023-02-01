@@ -20,7 +20,7 @@ Islamic Prayer Time is a convenient and user-friendly Chrome extension that help
 
 ## Video
 
-[![Prayer Time Chrome Extension](https://img.youtube.com/vi/<video-id>/maxresdefault.jpg)](https://www.youtube.com/watch?v=<video-id>)
+[[Prayer Time Chrome Extension](https://www.youtube.com/watch?v=IE4AB3M6iMI>)]
 
 Check out the video to learn how to install the extension.
 
@@ -39,4 +39,5 @@ This extension is licensed under the MIT License. See [LICENSE](LICENSE) for mor
 ## Credits
 
 - [Moment.js](https://momentjs.com/)
-- [Rapid API](https://rapidapi.com/meezaan/api/prayer-times?utm_source=google&utm_medium=cpc&utm_campaign=DSA&utm_term=_&gclid=CjwKCAiAqt-dBhBcEiwATw-ggElg-HF57q8qpX82Q13wxyqqyaueLpfJRkfh_eBA5r1yfS5iQdF0DBoCIjAQAvD_BwE)
+- [ReactJs](https://reactjs.org/)
+- [Aladhan API](https://aladhan.com/prayer-times-api)
