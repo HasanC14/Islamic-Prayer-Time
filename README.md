@@ -20,7 +20,7 @@ Islamic Prayer Time is a convenient and user-friendly Chrome extension that help
 
 ## Video
 
-[[Prayer Time Chrome Extension](https://www.youtube.com/watch?v=IE4AB3M6iMI>)]
+[![Prayer Time Chrome Extension](https://i.postimg.cc/mrHNXc2F/9419-removebg-preview.png)](https://www.youtube.com/watch?v=IE4AB3M6iMI)
 
 Check out the video to learn how to install the extension.
 
