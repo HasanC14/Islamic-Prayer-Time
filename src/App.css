@@ -1,27 +1,28 @@
-.cp{
+.cp {
   font-size: 50px;
 }
-.rt{
+.rt {
   margin-top: 25px;
   font-size: 28px;
   margin-right: 10px;
 }
-.prayer{
+.prayer {
   font-weight: 600;
   color: rgb(246, 241, 241);
 }
-.footer, a{
+.footer,
+a {
   margin-top: 40px;
   margin-right: 10px;
-text-decoration: none;
-color: rgb(199, 195, 195);
-font-size: medium;
+  text-decoration: none;
+  color: rgb(199, 195, 195);
+  font-size: medium;
 }
-.load{
+.load {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-*{
-  font-family: 'Roboto';
+* {
+  font-family: "Roboto";
 }
